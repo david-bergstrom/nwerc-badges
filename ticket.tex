@@ -1,0 +1,73 @@
+% use the corresponding paper size for your ticket definition
+\documentclass[a4paper,10pt]{letter}
+\usepackage[landscape]{geometry}
+%\usepackage[utf8]{inputenc}
+\usepackage{fontspec}%\setmainfont{Arial}
+%\usepackage{xeCJK}
+%\setCJKmainfont{ttf-wqy-microhei} 
+
+% load misc stuff
+\usepackage{graphicx}
+% load ticket.sty with the appropriate ticket definition
+\usepackage[freepin,crossmark]{ticket}
+\usepackage{color}
+
+% Colors
+\definecolor{Röd-text}{RGB}{255, 255, 255}
+\definecolor{Röd-background}{RGB}{255, 0, 0}
+\definecolor{Gul-text}{RGB}{0, 0, 0}
+\definecolor{Gul-background}{RGB}{255, 255, 0}
+\definecolor{Mörkblå-text}{RGB}{255, 255, 255}
+\definecolor{Mörkblå-background}{RGB}{0, 0, 255}
+\definecolor{Ljusblå-text}{RGB}{255, 255, 255}
+\definecolor{Ljusblå-background}{RGB}{100, 149, 237}
+\definecolor{Grön-text}{RGB}{0, 153, 76}
+\definecolor{Grön-background}{RGB}{0, 153, 76}
+\definecolor{-text}{RGB}{0, 0, 0}
+\definecolor{-background}{RGB}{255, 255, 255}
+
+% Constants for size
+%\hoffset=-16.2mm
+\voffset=-12.6mm
+
+\unitlength=1mm
+\ticketSize{100}{60}
+\ticketNumbers{2}{3}
+
+\renewcommand{\ticketdefault}{%
+  \put(5,   18){\line(1,0){90}}
+  \put(5,   15){\scriptsize NWERC}
+  \put(5,   12){\scriptsize 2014}
+  \put(5,   3){\includegraphics[width=15mm]{lithekod.png}}
+  \put(43,  3){\includegraphics[height=13mm]{liu.png}}
+  % Put your sponsors here
+  %\put(83, 12.5){\includegraphics[width=10mm]{IBM.png}}
+  %\put(80, 8.5){\includegraphics[width=15mm]{microsoft.jpg}}
+  %\put(80, 3){\includegraphics[width=15mm]{ing.png}}
+}
+
+% now what do you like to put in your ticket
+\newcommand{\makebadge}[5]{\ticket{%
+    % The name of the contestant
+    \put(50,46){\makebox[0mm]{\bfseries\Large #1}}%
+    % The name of the contestants team
+    \put(50,35){\makebox[0mm]{\bfseries \large #2}}%
+    % The contestants university
+    \put(50,25){\makebox[0mm]{\bfseries\small #3}}%
+    % The contestant role, should be defined as a color constant above
+    \put(0,56){\colorbox{#5-background}{\parbox{98mm}{
+          \centering\color{#5-text}\bfseries\large#4}}}%
+}}
+
+
+%% The actual generation of the badges
+\begin{document}
+\sffamily
+
+% Runners from Fabian
+\makebadge{Exempel Exempelsson}{}{Linköpings Universitet}{Runner}{Ljusblå}
+
+% Registered people from Fredrik
+\input{contestants.tex}
+
+\end{document}
